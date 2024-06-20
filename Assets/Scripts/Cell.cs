@@ -17,7 +17,7 @@ public class Cell : MonoBehaviour
 
     private void Update()
     {
-        
+        _plant?.FightForLife(_topAdjacentCell, _bottomAdjacentCell, _leftAdjacentCell, _rightAdjacentCell);
     }
 
     public bool TryAddAdjacent—ells(Cell topAdjacentCell, Cell bottomAdjacentCell, Cell leftAdjacentCell, Cell rightAdjacentCell)
@@ -36,6 +36,7 @@ public class Cell : MonoBehaviour
         if (!CanTakePlant) return false;
         _plant = plant;
         Object.Instantiate(plant, transform.position, Quaternion.identity);
+        CanTakePlant = false;
         return true;
     }
 }
