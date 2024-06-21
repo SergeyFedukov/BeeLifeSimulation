@@ -2,21 +2,35 @@ using UnityEngine;
 
 public abstract class Plant : MonoBehaviour
 {
+    private float _lifetime;
     private float _breedingTime;
     private float _timeBeforeBreeding;
     private bool _canBreed;
 
+    public bool IsAlive { get; private set; }
+
     protected virtual void Awake()
     {
+        _lifetime = 5f;
         _breedingTime = 2f;
         _timeBeforeBreeding = _breedingTime;
         _canBreed = false;
+        IsAlive = true;
     }
 
-    public void FightForLife(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
+    public void ChangeLifeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
     {
         Cell[] cells = { topCell, bottomCell, leftCell, rightCell };
 
+        TryBreed(cells);
+
+        _lifetime -= Time.deltaTime;
+        if (_lifetime <= 0)
+            IsAlive = false;
+    }
+
+    private void TryBreed(Cell[] cells)
+    {
         _timeBeforeBreeding -= Time.deltaTime;
         if (_timeBeforeBreeding <= 0)
             _canBreed = true;
