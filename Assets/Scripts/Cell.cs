@@ -10,6 +10,8 @@ public class Cell : MonoBehaviour
 
     public bool CanTakePlant { get; private set; }
 
+    public Plant Plant { get { return _plant; } }
+
     private void Awake()
     {
         CanTakePlant = true;

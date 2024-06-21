@@ -6,4 +6,9 @@ public class Flower : Plant
     {
         base.Awake();
     }
+
+    public void TakeDamage(float damage)
+    {
+        _lifetime -= damage;
+    }
 }

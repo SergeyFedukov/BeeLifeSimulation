@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Plant : MonoBehaviour
 {
-    private float _lifetime;
+    protected float _lifetime;
     private float _breedingTime;
     private float _timeBeforeBreeding;
     private bool _canBreed;
@@ -18,13 +18,16 @@ public abstract class Plant : MonoBehaviour
         IsAlive = true;
     }
 
-    public void ChangeLifeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
+    public virtual void ChangeLifeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
     {
         Cell[] cells = { topCell, bottomCell, leftCell, rightCell };
 
-        TryBreed(cells);
+        if (IsAlive)
+        {
+            TryBreed(cells);
+            _lifetime -= Time.deltaTime;
+        }
 
-        _lifetime -= Time.deltaTime;
         if (_lifetime <= 0)
             IsAlive = false;
     }
