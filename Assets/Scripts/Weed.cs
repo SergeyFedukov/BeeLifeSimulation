@@ -25,7 +25,7 @@ public class Weed : Plant
             if (cell != null && cell.Plant != null && cell.Plant is Flower)
             {
                 Flower flower = (Flower)cell.Plant;
-                flower.TakeDamage(_damage);
+                flower.TakeDamage(_damage * Time.deltaTime);
                 break;
             }
         }
