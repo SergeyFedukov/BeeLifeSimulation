@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -860,7 +860,7 @@ GameObject:
   - component: {fileID: 349189971}
   - component: {fileID: 349189970}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Start (Button)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1116,6 +1116,7 @@ GameObject:
   - component: {fileID: 506040096}
   - component: {fileID: 506040098}
   - component: {fileID: 506040097}
+  - component: {fileID: 506040099}
   m_Layer: 5
   m_Name: Value (TMP)
   m_TagString: Untagged
@@ -1240,6 +1241,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506040095}
   m_CullTransparentMesh: 1
+--- !u!114 &506040099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506040095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceda99febe5d66489b956aba7757e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 927257895}
 --- !u!1 &528452323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,6 +1625,7 @@ GameObject:
   - component: {fileID: 788317774}
   - component: {fileID: 788317776}
   - component: {fileID: 788317775}
+  - component: {fileID: 788317777}
   m_Layer: 5
   m_Name: Value (TMP)
   m_TagString: Untagged
@@ -1735,6 +1750,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788317773}
   m_CullTransparentMesh: 1
+--- !u!114 &788317777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788317773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceda99febe5d66489b956aba7757e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 1871212402}
 --- !u!1 &857233501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,7 +2000,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2220,6 +2248,11 @@ MonoBehaviour:
   _cellPrefub: {fileID: 9107013783752301371, guid: 298541c71bca6b849987995f011d2617, type: 3}
   _flowerPrefub: {fileID: 7225093620114419069, guid: 2e8011f5b44eed746a3b0c555544ab9e, type: 3}
   _weedPrefub: {fileID: 250213315475830221, guid: 8263746ac09cbd145a9ce0af0a320f2a, type: 3}
+  _flowerLifetimeSlider: {fileID: 0}
+  _flowerBreedingTimeSlider: {fileID: 0}
+  _weedLifetimeSlider: {fileID: 0}
+  _weedBreedingTimeSlider: {fileID: 0}
+  _weedDamageSlider: {fileID: 0}
 --- !u!1 &994833770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,7 +2340,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3221,6 +3254,7 @@ GameObject:
   - component: {fileID: 1368276862}
   - component: {fileID: 1368276864}
   - component: {fileID: 1368276863}
+  - component: {fileID: 1368276865}
   m_Layer: 5
   m_Name: Value (TMP)
   m_TagString: Untagged
@@ -3345,6 +3379,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368276861}
   m_CullTransparentMesh: 1
+--- !u!114 &1368276865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368276861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceda99febe5d66489b956aba7757e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 1962844658}
 --- !u!1 &1477024100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3584,7 +3631,7 @@ GameObject:
   - component: {fileID: 1595811499}
   - component: {fileID: 1595811498}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Finish (Button)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3780,6 +3827,7 @@ GameObject:
   - component: {fileID: 1715321364}
   - component: {fileID: 1715321366}
   - component: {fileID: 1715321365}
+  - component: {fileID: 1715321367}
   m_Layer: 5
   m_Name: Value (TMP)
   m_TagString: Untagged
@@ -3904,6 +3952,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715321363}
   m_CullTransparentMesh: 1
+--- !u!114 &1715321367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715321363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceda99febe5d66489b956aba7757e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 184128921}
 --- !u!1 &1727642014
 GameObject:
   m_ObjectHideFlags: 0
@@ -4322,7 +4383,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4550,7 +4611,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4566,6 +4627,7 @@ GameObject:
   - component: {fileID: 2042550653}
   - component: {fileID: 2042550655}
   - component: {fileID: 2042550654}
+  - component: {fileID: 2042550656}
   m_Layer: 5
   m_Name: Value (TMP)
   m_TagString: Untagged
@@ -4690,3 +4752,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042550652}
   m_CullTransparentMesh: 1
+--- !u!114 &2042550656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042550652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceda99febe5d66489b956aba7757e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 994833772}
