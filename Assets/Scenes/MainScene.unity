@@ -2248,11 +2248,14 @@ MonoBehaviour:
   _cellPrefub: {fileID: 9107013783752301371, guid: 298541c71bca6b849987995f011d2617, type: 3}
   _flowerPrefub: {fileID: 7225093620114419069, guid: 2e8011f5b44eed746a3b0c555544ab9e, type: 3}
   _weedPrefub: {fileID: 250213315475830221, guid: 8263746ac09cbd145a9ce0af0a320f2a, type: 3}
-  _flowerLifetimeSlider: {fileID: 0}
-  _flowerBreedingTimeSlider: {fileID: 0}
-  _weedLifetimeSlider: {fileID: 0}
-  _weedBreedingTimeSlider: {fileID: 0}
-  _weedDamageSlider: {fileID: 0}
+  _startButton: {fileID: 349189970}
+  _finishButton: {fileID: 1595811498}
+  _sliders:
+  - {fileID: 1871212402}
+  - {fileID: 927257895}
+  - {fileID: 994833772}
+  - {fileID: 184128921}
+  - {fileID: 1962844658}
 --- !u!1 &994833770
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class Weed : Plant
 {
-    private float _damage;
+    [SerializeField] private float _damage;
 
     protected override void Awake()
     {
         base.Awake();
-        _damage = 1f;
+    }
+
+    public bool TryInitialize(float lifetime, float breedingTime, float damage)
+    {
+        if (!_isInitialized)
+            _damage = damage;
+        return TryInitialize(lifetime, breedingTime);
     }
 
     public override void ChangeLifeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)

@@ -2,20 +2,33 @@ using UnityEngine;
 
 public abstract class Plant : MonoBehaviour
 {
-    protected float _lifetime;
-    private float _breedingTime;
+    [SerializeField]protected float _lifetime;
+    [SerializeField] private float _breedingTime;
     private float _timeBeforeBreeding;
+    private float _timeUntilDeath;
     private bool _canBreed;
+    protected bool _isInitialized = false;
 
     public bool IsAlive { get; private set; }
 
     protected virtual void Awake()
     {
-        _lifetime = 5f;
-        _breedingTime = 2f;
         _timeBeforeBreeding = _breedingTime;
+        _timeUntilDeath = _lifetime;
         _canBreed = false;
         IsAlive = true;
+    }
+
+    public bool TryInitialize(float lifetime, float breedingTime)
+    {
+        if (!_isInitialized)
+        {
+            _lifetime = lifetime;
+            _breedingTime = breedingTime;
+            _isInitialized = true;
+        }
+
+        return !_isInitialized;
     }
 
     public virtual void ChangeLifeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
@@ -25,10 +38,10 @@ public abstract class Plant : MonoBehaviour
         if (IsAlive)
         {
             TryBreed(cells);
-            _lifetime -= Time.deltaTime;
+            _timeUntilDeath -= Time.deltaTime;
         }
 
-        if (_lifetime <= 0)
+        if (_timeUntilDeath <= 0)
             IsAlive = false;
     }
 

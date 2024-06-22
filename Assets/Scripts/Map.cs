@@ -54,7 +54,7 @@ public class Map
         int firstIndex, secondIndex;
         bool isTook = true;
 
-        while(isTook)
+        while (isTook)
         {
             firstIndex = random1.Next(_plantCellsWidth);
             secondIndex = random2.Next(_plantCellsHeight);
