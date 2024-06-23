@@ -9,6 +9,6 @@ public class Flower : Plant
 
     public void TakeDamage(float damage)
     {
-        _lifetime -= damage;
+        _timeUntilDeath -= damage;
     }
 }

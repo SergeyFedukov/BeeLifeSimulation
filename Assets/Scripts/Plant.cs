@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class Plant : MonoBehaviour
 {
-    [SerializeField]protected float _lifetime;
+    [SerializeField] private float _lifetime;
     [SerializeField] private float _breedingTime;
     private float _timeBeforeBreeding;
-    private float _timeUntilDeath;
     private bool _canBreed;
+    protected float _timeUntilDeath;
     protected bool _isInitialized = false;
 
     public bool IsAlive { get; private set; }

@@ -25,12 +25,19 @@ public class SimulationController : MonoBehaviour
 
     private void Start()
     {
+        _finishButton.interactable = false;
         _map = Map.GetInstance(Vector3.left, 1, 4, 4, 8);
         _map.TryCreate(_cellPrefub, 0.2f);
     }
 
     private void StartSimulation()
     {
+        _startButton.interactable = false;
+        _finishButton.interactable = true;
+
+        foreach (var slider in _sliders)
+            slider.interactable = false;
+
         Flower flower = Instantiate(_flowerPrefub, transform.position, Quaternion.identity);
         flower.TryInitialize(_sliders[0].value, _sliders[1].value);
         Weed weed = Instantiate(_weedPrefub, transform.position, Quaternion.identity);
@@ -43,6 +50,14 @@ public class SimulationController : MonoBehaviour
 
     private void FinishSimulation()
     {
+        _map.Destroy();
+        _map = Map.GetInstance(Vector3.left, 1, 4, 4, 8);
+        _map.TryCreate(_cellPrefub, 0.2f);
 
+        _startButton.interactable = true;
+        _finishButton.interactable = false;
+
+        foreach (var slider in _sliders)
+            slider.interactable = true;
     }
 }

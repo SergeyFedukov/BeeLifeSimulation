@@ -47,6 +47,19 @@ public class Map
         return true;
     }
 
+    public void Destroy()
+    {
+        DestroyCells(_hiveCells);
+        DestroyCells(_plantCells);
+        _hiveCells = null;
+        _plantCells = null;
+        instance = null;
+        _hiveCellsWidth = 0;
+        _hiveCellsHeight = 0;
+        _plantCellsWidth = 0;
+        _plantCellsHeight = 0;
+    }
+
     public void PlacePlantInCell(Plant plant)
     {
         System.Random random1 = new System.Random();
@@ -114,6 +127,24 @@ public class Map
 
                 cells[i,j].TryAddAdjacent—ells(topCell, bottomCell, leftCell, rightCell);
             }
+        }
+    }
+
+    private void DestroyCells(Cell[,] cells)
+    {
+        int width = cells.GetUpperBound(0) + 1;
+        int height = cells.Length / width;
+
+        foreach (var cell in cells)
+        {
+            Plant plant = cell.Plant;
+
+            if (plant != null)
+            {
+                Object.Destroy(plant.gameObject);
+            }
+
+            Object.Destroy(cell.gameObject);
         }
     }
 }
