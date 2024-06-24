@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Plant : MonoBehaviour
+public abstract class Plant : MonoBehaviour, IStateObject
 {
     [SerializeField] private float _lifetime;
     [SerializeField] private float _breedingTime;
@@ -31,7 +31,7 @@ public abstract class Plant : MonoBehaviour
         return !_isInitialized;
     }
 
-    public virtual void ChangeLifeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
+    public virtual void ChangeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
     {
         Cell[] cells = { topCell, bottomCell, leftCell, rightCell };
 
@@ -55,7 +55,7 @@ public abstract class Plant : MonoBehaviour
         {
             foreach (var cell in cells)
             {
-                if (cell != null && cell.TryTakePlant(this))
+                if (cell != null && cell.TryTakeStateObject(this))
                 {
                     _canBreed = false;
                     _timeBeforeBreeding = _breedingTime;

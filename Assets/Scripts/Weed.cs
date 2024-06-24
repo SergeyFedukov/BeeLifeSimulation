@@ -16,9 +16,9 @@ public class Weed : Plant
         return TryInitialize(lifetime, breedingTime);
     }
 
-    public override void ChangeLifeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
+    public override void ChangeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
     {
-        base.ChangeLifeState(topCell, bottomCell, leftCell, rightCell);
+        base.ChangeState(topCell, bottomCell, leftCell, rightCell);
         Fight(topCell, bottomCell, leftCell, rightCell);
     }
 
@@ -28,9 +28,9 @@ public class Weed : Plant
 
         foreach (var cell in cells)
         {
-            if (cell != null && cell.Plant != null && cell.Plant is Flower)
+            if (cell != null && cell.StateObject != null && cell.StateObject is Flower)
             {
-                Flower flower = (Flower)cell.Plant;
+                Flower flower = (Flower)cell.StateObject;
                 flower.TakeDamage(_damage * Time.deltaTime);
                 break;
             }

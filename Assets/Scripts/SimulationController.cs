@@ -9,6 +9,7 @@ public class SimulationController : MonoBehaviour
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _finishButton;
     [SerializeField] private Slider[] _sliders;
+    [SerializeField] private Hive _hivePrefub;
     private Map _map;
 
     private void OnEnable()
@@ -42,10 +43,13 @@ public class SimulationController : MonoBehaviour
         flower.TryInitialize(_sliders[0].value, _sliders[1].value);
         Weed weed = Instantiate(_weedPrefub, transform.position, Quaternion.identity);
         weed.TryInitialize(_sliders[2].value, _sliders[3].value, _sliders[4].value);
+        Hive hive = Instantiate(_hivePrefub, transform.position, Quaternion.identity);
         _map.PlacePlantInCell(flower);
         _map.PlacePlantInCell(weed);
+        _map.PlaceHiveInCell(hive);
         Destroy(flower.gameObject);
         Destroy(weed.gameObject);
+        Destroy(hive.gameObject);
     }
 
     private void FinishSimulation()

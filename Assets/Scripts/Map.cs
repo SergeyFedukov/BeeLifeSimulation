@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class Map
 {
@@ -42,8 +42,8 @@ public class Map
         Vector3 plantCellsPosition = new Vector3(hiveCellPosition.x - plantCellScale.x * 5, hiveCellPosition.y, hiveCellPosition.z - (hiveCellScale.z + plantCellScale.z) * 5);
 
         CreateCells(cellPrefub, plantCellsPosition, _plantCells, plantCellSize);
-        AddAdjacent—ells(_hiveCells);
-        AddAdjacent—ells(_plantCells);
+        AddAdjacentCells(_hiveCells);
+        AddAdjacentCells(_plantCells);
         return true;
     }
 
@@ -72,9 +72,14 @@ public class Map
             firstIndex = random1.Next(_plantCellsWidth);
             secondIndex = random2.Next(_plantCellsHeight);
 
-            if (_plantCells[firstIndex, secondIndex].TryTakePlant(plant))
+            if (_plantCells[firstIndex, secondIndex].TryTakeStateObject(plant))
                 isTook = false;
         }
+    }
+
+    public void PlaceHiveInCell(Hive hive)
+    {
+        _hiveCells[0, 0].TryTakeStateObject(hive);
     }
 
     private void CreateCells(Cell cellPrefub, Vector3 startPosition, Cell[,] cells, float cellSize)
@@ -102,7 +107,7 @@ public class Map
         }
     }
 
-    private void AddAdjacent—ells(Cell[,] cells)
+    private void AddAdjacentCells(Cell[,] cells)
     {
         int width = cells.GetUpperBound(0) + 1;
         int height = cells.Length / width;
@@ -125,7 +130,7 @@ public class Map
                 if (j != 0)
                     leftCell = cells[i, j - 1];
 
-                cells[i,j].TryAddAdjacent—ells(topCell, bottomCell, leftCell, rightCell);
+                cells[i, j].TryAddAdjacentCells(topCell, bottomCell, leftCell, rightCell);
             }
         }
     }
@@ -137,11 +142,14 @@ public class Map
 
         foreach (var cell in cells)
         {
-            Plant plant = cell.Plant;
+            IStateObject stateObject = cell.StateObject;
 
-            if (plant != null)
+            if (stateObject != null)
             {
-                Object.Destroy(plant.gameObject);
+                if (stateObject is Plant)
+                    Object.Destroy(((Plant)stateObject).gameObject);
+                else
+                    Object.Destroy(((Hive)stateObject).gameObject);
             }
 
             Object.Destroy(cell.gameObject);

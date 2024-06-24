@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class Cell : MonoBehaviour
 {
@@ -6,30 +6,38 @@ public class Cell : MonoBehaviour
     private Cell _bottomAdjacentCell;
     private Cell _leftAdjacentCell;
     private Cell _rightAdjacentCell;
-    private Plant _plant;
+    private IStateObject _stateObject;
 
-    public bool CanTakePlant { get; private set; }
+    public bool CanTakeStateObject { get; private set; }
 
-    public Plant Plant { get { return _plant; } }
+    public IStateObject StateObject { get { return _stateObject; } }
 
     private void Awake()
     {
-        CanTakePlant = true;
+        CanTakeStateObject = true;
     }
 
     private void Update()
     {
-        _plant?.ChangeLifeState(_topAdjacentCell, _bottomAdjacentCell, _leftAdjacentCell, _rightAdjacentCell);
+        _stateObject?.ChangeState(_topAdjacentCell, _bottomAdjacentCell, _leftAdjacentCell, _rightAdjacentCell);
 
-        if (_plant != null && !_plant.IsAlive)
+        if (_stateObject is Plant)
         {
-            CanTakePlant = true;
-            Destroy(_plant.gameObject);
-            _plant = null;
+            Plant plant = (Plant)_stateObject;
+            if (plant != null && !plant.IsAlive)
+            {
+                CanTakeStateObject = true;
+                Destroy(plant.gameObject);
+                _stateObject = null;
+            }
+        }
+        else 
+        {
+        
         }
     }
 
-    public bool TryAddAdjacent—ells(Cell topAdjacentCell, Cell bottomAdjacentCell, Cell leftAdjacentCell, Cell rightAdjacentCell)
+    public bool TryAddAdjacentCells(Cell topAdjacentCell, Cell bottomAdjacentCell, Cell leftAdjacentCell, Cell rightAdjacentCell)
     {
         if (_topAdjacentCell != null || _bottomAdjacentCell != null || _leftAdjacentCell != null || _rightAdjacentCell != null)
             return false;
@@ -40,11 +48,14 @@ public class Cell : MonoBehaviour
         return true;
     }
 
-    public bool TryTakePlant(Plant plant)
+    public bool TryTakeStateObject(IStateObject stateObject)
     {
-        if (!CanTakePlant) return false;
-        _plant = Instantiate(plant, transform.position, Quaternion.identity);
-        CanTakePlant = false;
+        if (!CanTakeStateObject) return false;
+        if (stateObject is Plant)
+            _stateObject = Instantiate((Plant)stateObject, transform.position, Quaternion.identity);
+        else
+            _stateObject = Instantiate((Hive)stateObject, transform.position + new Vector3(0, 0.4f, 0), Quaternion.identity);
+        CanTakeStateObject = false;
         return true;
     }
 }

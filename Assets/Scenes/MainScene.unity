@@ -2256,6 +2256,7 @@ MonoBehaviour:
   - {fileID: 994833772}
   - {fileID: 184128921}
   - {fileID: 1962844658}
+  _hivePrefub: {fileID: 4772994499486659606, guid: 736dde7ba1b5cfc48aa045a0e1131261, type: 3}
 --- !u!1 &994833770
 GameObject:
   m_ObjectHideFlags: 0
