@@ -4,7 +4,7 @@ public abstract class Plant : MonoBehaviour, IStateObject
 {
     [SerializeField] private float _lifetime;
     [SerializeField] private float _breedingTime;
-    private float _timeBeforeBreeding;
+    private float _timeUntilBreeding;
     private bool _canBreed;
     protected float _timeUntilDeath;
     protected bool _isInitialized = false;
@@ -13,7 +13,7 @@ public abstract class Plant : MonoBehaviour, IStateObject
 
     protected virtual void Awake()
     {
-        _timeBeforeBreeding = _breedingTime;
+        _timeUntilBreeding = _breedingTime;
         _timeUntilDeath = _lifetime;
         _canBreed = false;
         IsAlive = true;
@@ -47,8 +47,8 @@ public abstract class Plant : MonoBehaviour, IStateObject
 
     private void TryBreed(Cell[] cells)
     {
-        _timeBeforeBreeding -= Time.deltaTime;
-        if (_timeBeforeBreeding <= 0)
+        _timeUntilBreeding -= Time.deltaTime;
+        if (_timeUntilBreeding <= 0)
             _canBreed = true;
 
         if (_canBreed)
@@ -58,7 +58,7 @@ public abstract class Plant : MonoBehaviour, IStateObject
                 if (cell != null && cell.TryTakeStateObject(this))
                 {
                     _canBreed = false;
-                    _timeBeforeBreeding = _breedingTime;
+                    _timeUntilBreeding = _breedingTime;
                     break;
                 }
             }
