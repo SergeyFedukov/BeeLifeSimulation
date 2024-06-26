@@ -29,9 +29,12 @@ public class BeeQueen : Bee
     {
         base.ChangeState();
 
-        if (!_canBreed)
-            _timeUntilBreeding -= Time.deltaTime;
-        if (_timeUntilBreeding <= 0)
-            _canBreed = true;
+        if (IsAlive)
+        {
+            if (!_canBreed)
+                _timeUntilBreeding -= Time.deltaTime;
+            if (_timeUntilBreeding <= 0)
+                _canBreed = true;
+        }
     }
 }

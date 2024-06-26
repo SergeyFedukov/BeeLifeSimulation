@@ -24,21 +24,26 @@ public class BeeWorker : Bee
     {
         base.ChangeState();
 
-        if (_timeUntilWork <= 0)
+        if (IsAlive)
         {
-            if (_view == null)
-                _view = Object.Instantiate(_prefubBeeWorkerView, _viewPosition, Quaternion.identity);
-            if (_tempWorkTime > 0)
-                _tempWorkTime -= Time.deltaTime;
-            else
+            if (_timeUntilWork <= 0)
             {
-                Object.Destroy(_view.gameObject);
-                _view = null;
-                _tempWorkTime = _workTime;
-                _timeUntilWork = _restTime;
+                if (_view == null)
+                    _view = Object.Instantiate(_prefubBeeWorkerView, _viewPosition, Quaternion.identity);
+                if (_tempWorkTime > 0)
+                    _tempWorkTime -= Time.deltaTime;
+                else
+                {
+                    Object.Destroy(_view.gameObject);
+                    _view = null;
+                    _tempWorkTime = _workTime;
+                    _timeUntilWork = _restTime;
+                }
             }
+            else
+                _timeUntilWork -= Time.deltaTime;
         }
-        else
-            _timeUntilWork -= Time.deltaTime;
+        else if (_view != null)
+            Object.Destroy(_view.gameObject);
     }
 }

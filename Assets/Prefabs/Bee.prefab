@@ -118,3 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df675ff8881f074caf11315866872b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 2
+  _maxFlyPositionX: 6
+  _minFlyPositionX: -2
+  _maxFlyPositionZ: -1
+  _minFlyPositionZ: -5
