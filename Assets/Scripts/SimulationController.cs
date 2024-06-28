@@ -40,9 +40,9 @@ public class SimulationController : MonoBehaviour
             slider.interactable = false;
 
         Flower flower = Instantiate(_flowerPrefub, transform.position, Quaternion.identity);
-        flower.TryInitialize(_sliders[0].value, _sliders[1].value);
+        flower.TryInitialize(_sliders[0].value, _sliders[1].value, (int)_sliders[2].value);
         Weed weed = Instantiate(_weedPrefub, transform.position, Quaternion.identity);
-        weed.TryInitialize(_sliders[2].value, _sliders[3].value, _sliders[4].value);
+        weed.TryInitialize(_sliders[3].value, _sliders[4].value, _sliders[5].value);
         Hive hive = Instantiate(_hivePrefub, transform.position, Quaternion.identity);
         _map.PlacePlantInCell(flower);
         _map.PlacePlantInCell(weed);

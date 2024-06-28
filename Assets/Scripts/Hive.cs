@@ -2,20 +2,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hive : MonoBehaviour, IStateObject
-{
+{ 
     [SerializeField] private BeeWorkerView _prefubBeeWorkerView;
     private List<BeeWorker> _bees = new List<BeeWorker>();
-    private BeeQueen _beeQueen = new BeeQueen(30f, 2f);
+    private BeeQueen _beeQueen = new BeeQueen(3f, 2f);
 
     public void ChangeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
     {
         _beeQueen?.ChangeState();
-        BeeWorker beeWorker = _beeQueen?.TryBreedBee(_prefubBeeWorkerView, transform.position + new Vector3(0, 0.1f, -1f), 30f, 1f, 30f);
+
+        BeeWorker beeWorker = _beeQueen?.TryBreedBee(_prefubBeeWorkerView, transform.position + new Vector3(0, 0.2f, -0.6f), 60f, 1f, 2, 1f);
         if (beeWorker != null)
             _bees.Add(beeWorker);
 
         foreach (var bee in _bees)
             bee.ChangeState();
-            
+
     }
 }

@@ -5,19 +5,19 @@ public class BeeWorker : Bee
     private BeeWorkerView _prefubBeeWorkerView;
     private float _restTime;
     private float _timeUntilWork;
-    private float _workTime;
-    private float _tempWorkTime;
+    private int _pollenCapacity;
+    private float _visibility;
     private BeeWorkerView _view;
     private Vector3 _viewPosition;
 
-    public BeeWorker(BeeWorkerView prefubBeeWorkerView, Vector3 viewPosition, float lifetime, float restTime, float workTime) : base(lifetime)
+    public BeeWorker(BeeWorkerView prefubBeeWorkerView, Vector3 viewPosition, float lifetime, float restTime, int pollenCapacity, float visibility) : base(lifetime)
     {
         _prefubBeeWorkerView = prefubBeeWorkerView;
         _viewPosition = viewPosition;
         _restTime = restTime;
-        _workTime = workTime;
-        _tempWorkTime = workTime;
         _timeUntilWork = 0;
+        _pollenCapacity = pollenCapacity;
+        _visibility = visibility;
     }
 
     public override void ChangeState()
@@ -29,14 +29,15 @@ public class BeeWorker : Bee
             if (_timeUntilWork <= 0)
             {
                 if (_view == null)
+                {
                     _view = Object.Instantiate(_prefubBeeWorkerView, _viewPosition, Quaternion.identity);
-                if (_tempWorkTime > 0)
-                    _tempWorkTime -= Time.deltaTime;
-                else
+                    _view.PollenCapacity = _pollenCapacity;
+                    _view.Visibility = _visibility;
+                }
+                else if (_view.PollenCount >= _pollenCapacity && _view.IsInHive)
                 {
                     Object.Destroy(_view.gameObject);
                     _view = null;
-                    _tempWorkTime = _workTime;
                     _timeUntilWork = _restTime;
                 }
             }

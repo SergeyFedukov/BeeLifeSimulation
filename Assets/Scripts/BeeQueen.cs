@@ -13,13 +13,13 @@ public class BeeQueen : Bee
         _canBreed = false;
     }
 
-    public BeeWorker TryBreedBee(BeeWorkerView prefubBeeWorkerView, Vector3 viewPosition, float lifetime, float restTime, float workTime)
+    public BeeWorker TryBreedBee(BeeWorkerView prefubBeeWorkerView, Vector3 viewPosition, float lifetime, float restTime, int pollenCapacity, float visibility)
     {
         BeeWorker bornBee = null;
         if (_canBreed)
         {
             _timeUntilBreeding = _breedingTime;
-            bornBee = new BeeWorker(prefubBeeWorkerView, viewPosition, lifetime, restTime, workTime);
+            bornBee = new BeeWorker(prefubBeeWorkerView, viewPosition, lifetime, restTime, pollenCapacity, visibility);
             _canBreed = false;
         }
         return bornBee;
