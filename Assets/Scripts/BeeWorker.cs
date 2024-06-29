@@ -10,7 +10,9 @@ public class BeeWorker : Bee
     private BeeWorkerView _view;
     private Vector3 _viewPosition;
 
-    public BeeWorker(BeeWorkerView prefubBeeWorkerView, Vector3 viewPosition, float lifetime, float restTime, int pollenCapacity, float visibility) : base(lifetime)
+    public bool IsInHive { get; private set; }
+
+    public BeeWorker(BeeWorkerView prefubBeeWorkerView, Vector3 viewPosition, float lifetime, float satietyTime, int amountOfPollenForSatiety, float restTime, int pollenCapacity, float visibility) : base(lifetime, satietyTime, amountOfPollenForSatiety)
     {
         _prefubBeeWorkerView = prefubBeeWorkerView;
         _viewPosition = viewPosition;
@@ -33,12 +35,14 @@ public class BeeWorker : Bee
                     _view = Object.Instantiate(_prefubBeeWorkerView, _viewPosition, Quaternion.identity);
                     _view.PollenCapacity = _pollenCapacity;
                     _view.Visibility = _visibility;
+                    IsInHive = false;
                 }
                 else if (_view.PollenCount >= _pollenCapacity && _view.IsInHive)
                 {
                     Object.Destroy(_view.gameObject);
                     _view = null;
                     _timeUntilWork = _restTime;
+                    IsInHive = true;
                 }
             }
             else
@@ -46,5 +50,14 @@ public class BeeWorker : Bee
         }
         else if (_view != null)
             Object.Destroy(_view.gameObject);
+    }
+
+    public int TryGetPollen()
+    {
+        int pollen = 0;
+        if (IsAlive && _view == null)
+            pollen = _pollenCapacity;
+
+        return pollen;
     }
 }
