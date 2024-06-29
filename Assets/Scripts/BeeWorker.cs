@@ -66,4 +66,10 @@ public class BeeWorker : Bee
 
         return pollen;
     }
+
+    public void DestroyView()
+    { 
+        if (_view != null)
+            Object.Destroy(_view.gameObject);
+    }
 }

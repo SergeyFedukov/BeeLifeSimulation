@@ -39,10 +39,8 @@ public abstract class Bee
     {
         if (_tempSatietyTime <= 0  && amountOfPollen >= _amountOfPollenForSatiety)
         {
-            Debug.Log($"1 amountOfPollen {amountOfPollen} _tempSatietyTime {_tempSatietyTime}  _satietyTime{_satietyTime}");
             amountOfPollen -= _amountOfPollenForSatiety;
             _tempSatietyTime = _satietyTime;
-            Debug.Log($"2 amountOfPollen {amountOfPollen} _tempSatietyTime {_tempSatietyTime}  _satietyTime{_satietyTime}");
         }
     }
 }

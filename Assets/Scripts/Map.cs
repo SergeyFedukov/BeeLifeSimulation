@@ -149,7 +149,11 @@ public class Map
                 if (stateObject is Plant)
                     Object.Destroy(((Plant)stateObject).gameObject);
                 else
-                    Object.Destroy(((Hive)stateObject).gameObject);
+                {
+                    Hive hive = (Hive)stateObject;
+                    hive.DestroyBee();
+                    Object.Destroy(hive.gameObject);
+                }
             }
 
             Object.Destroy(cell.gameObject);

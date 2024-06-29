@@ -52,4 +52,10 @@ public class Hive : MonoBehaviour, IStateObject
             bee.ChangeState();
             
     }
+
+    public void DestroyBee()
+    {
+        foreach (var bee in _bees)
+            bee.DestroyView();
+    }
 }
