@@ -9,6 +9,7 @@ public class BeeWorker : Bee
     private float _visibility;
     private BeeWorkerView _view;
     private Vector3 _viewPosition;
+    private int _pollenCount;
 
     public bool IsInHive { get; private set; }
 
@@ -20,6 +21,7 @@ public class BeeWorker : Bee
         _timeUntilWork = 0;
         _pollenCapacity = pollenCapacity;
         _visibility = visibility;
+        _pollenCount = 0;
     }
 
     public override void ChangeState()
@@ -39,6 +41,7 @@ public class BeeWorker : Bee
                 }
                 else if (_view.PollenCount >= _pollenCapacity && _view.IsInHive)
                 {
+                    _pollenCount = _view.PollenCount;
                     Object.Destroy(_view.gameObject);
                     _view = null;
                     _timeUntilWork = _restTime;
@@ -55,8 +58,11 @@ public class BeeWorker : Bee
     public int TryGetPollen()
     {
         int pollen = 0;
-        if (IsAlive && _view == null)
-            pollen = _pollenCapacity;
+        if (IsAlive && _view == null && _pollenCount != 0)
+        {
+            pollen = _pollenCount;
+            _pollenCount = 0;
+        }
 
         return pollen;
     }

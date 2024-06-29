@@ -12,6 +12,7 @@ public class Hive : MonoBehaviour, IStateObject
     private void Awake()
     {
         _beeCapacity = 1;
+        countOfPollen = 0;
     }
 
     public void ChangeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)

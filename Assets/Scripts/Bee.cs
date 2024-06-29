@@ -26,6 +26,9 @@ public abstract class Bee
         {
             _timeUntilDeath -= Time.deltaTime;
             _tempSatietyTime -= Time.deltaTime;
+
+            if (_tempSatietyTime <= 0)
+                _timeUntilDeath -= Time.deltaTime;
         }
 
         if (_timeUntilDeath <= 0)
@@ -34,7 +37,7 @@ public abstract class Bee
 
     public void TryEat(ref int amountOfPollen)
     {
-        if (_tempSatietyTime < _satietyTime && amountOfPollen >= _amountOfPollenForSatiety)
+        if (_tempSatietyTime <= 0  && amountOfPollen >= _amountOfPollenForSatiety)
         {
             Debug.Log($"1 amountOfPollen {amountOfPollen} _tempSatietyTime {_tempSatietyTime}  _satietyTime{_satietyTime}");
             amountOfPollen -= _amountOfPollenForSatiety;
