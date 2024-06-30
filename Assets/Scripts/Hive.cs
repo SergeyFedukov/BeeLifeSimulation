@@ -5,14 +5,30 @@ public class Hive : MonoBehaviour, IStateObject
 { 
     [SerializeField] private BeeWorkerView _prefubBeeWorkerView;
     [SerializeField] private int _beeCapacity;
+    [SerializeField] private BeeQueen _beeQueenParameters;
+    [SerializeField] private BeeWorker _beeWorkerParameters;
+    private BeeQueen _beeQueen;
     private List<BeeWorker> _bees = new List<BeeWorker>();
-    private BeeQueen _beeQueen = new BeeQueen(30f, 40f, 4, 2f);
     private int countOfPollen;
+    protected bool _isInitialized = false;
 
     private void Awake()
     {
-        _beeCapacity = 1;
-        countOfPollen = 0;
+        if (_beeCapacity > 0)
+            _beeQueen = new BeeQueen(_beeQueenParameters.Lifetime, _beeQueenParameters.SatietyTime, _beeQueenParameters.AmountOfPollenForSatiety, _beeQueenParameters.BreedingTime);
+    }
+
+    public bool TryInitialize(BeeQueen beeQueen, BeeWorker beeWorker, int beeCapacity)
+    {
+        if (!_isInitialized)
+        {
+            _beeQueenParameters = beeQueen;
+            _beeWorkerParameters = beeWorker;
+            _beeCapacity = beeCapacity;
+            _isInitialized = true;
+        }
+
+        return !_isInitialized;
     }
 
     public void ChangeState(Cell topCell, Cell bottomCell, Cell leftCell, Cell rightCell)
@@ -28,14 +44,14 @@ public class Hive : MonoBehaviour, IStateObject
                 countOfPollen += pollen;
         }
 
-        _beeQueen.TryEat(ref countOfPollen);
+        _beeQueen?.TryEat(ref countOfPollen);
         foreach (var bee in _bees)
             if (bee.IsInHive)
                 bee.TryEat(ref countOfPollen);
 
-        if (_bees.Count < _beeCapacity)
+        if (_bees.Count + 1 < _beeCapacity)
         {
-            BeeWorker beeWorker = _beeQueen?.TryBreedBee(_prefubBeeWorkerView, transform.position + new Vector3(0, 0.2f, -0.6f), 60f, 4f, 2, 1f, 2, 1f);
+            BeeWorker beeWorker = _beeQueen?.TryBreedBee(_prefubBeeWorkerView, transform.position + new Vector3(0, 0.2f, -0.6f), _beeWorkerParameters.Lifetime, _beeWorkerParameters.SatietyTime, _beeWorkerParameters.AmountOfPollenForSatiety, _beeWorkerParameters.RestTime, _beeWorkerParameters.PollenCapacity, _beeWorkerParameters.Visibility);
             if (beeWorker != null)
                 _bees.Add(beeWorker);
         }

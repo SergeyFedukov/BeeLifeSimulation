@@ -1,14 +1,18 @@
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Bee
 {
-    private float _lifetime;
+    [SerializeField] private float _lifetime;
     private float _timeUntilDeath;
-    private float _satietyTime;
+    [SerializeField] private float _satietyTime;
     private float _tempSatietyTime;
-    private int _amountOfPollenForSatiety;
+    [SerializeField] private int _amountOfPollenForSatiety;
 
     public bool IsAlive { get; private set; }
+    public float Lifetime { get { return _lifetime; } }
+    public float SatietyTime { get { return _satietyTime; } }
+    public int AmountOfPollenForSatiety { get { return _amountOfPollenForSatiety; } }
 
     public Bee(float lifetime, float satietyTime, int amountOfPollenForSatiety)
     {

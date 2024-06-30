@@ -1,10 +1,13 @@
 using UnityEngine;
 
+[System.Serializable]
 public class BeeQueen : Bee
 {
-    private float _breedingTime;
+    [SerializeField] private float _breedingTime;
     private float _timeUntilBreeding;
     private bool _canBreed;
+
+    public float BreedingTime { get { return _breedingTime; } }
 
     public BeeQueen(float lifetime, float satietyTime, int amountOfPollenForSatiety, float breedingTime) : base(lifetime, satietyTime, amountOfPollenForSatiety)
     {

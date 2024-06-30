@@ -1,17 +1,22 @@
 using UnityEngine;
 
+[System.Serializable]
 public class BeeWorker : Bee
 {
     private BeeWorkerView _prefubBeeWorkerView;
-    private float _restTime;
+    [SerializeField] private float _restTime;
     private float _timeUntilWork;
-    private int _pollenCapacity;
-    private float _visibility;
+    [SerializeField] private int _pollenCapacity;
+    [SerializeField] private float _visibility;
     private BeeWorkerView _view;
     private Vector3 _viewPosition;
     private int _pollenCount;
 
     public bool IsInHive { get; private set; }
+    public float RestTime { get { return _restTime; } }
+    public float Visibility { get { return _visibility; } }
+    public int PollenCapacity { get { return _pollenCapacity; } }
+    
 
     public BeeWorker(BeeWorkerView prefubBeeWorkerView, Vector3 viewPosition, float lifetime, float satietyTime, int amountOfPollenForSatiety, float restTime, int pollenCapacity, float visibility) : base(lifetime, satietyTime, amountOfPollenForSatiety)
     {

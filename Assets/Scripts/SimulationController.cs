@@ -44,6 +44,9 @@ public class SimulationController : MonoBehaviour
         Weed weed = Instantiate(_weedPrefub, transform.position, Quaternion.identity);
         weed.TryInitialize(_sliders[3].value, _sliders[4].value, _sliders[5].value);
         Hive hive = Instantiate(_hivePrefub, transform.position, Quaternion.identity);
+        BeeWorker beeWorker = new BeeWorker(null, Vector3.zero, _sliders[6].value, _sliders[7].value, (int)_sliders[8].value, _sliders[9].value, (int)_sliders[10].value, _sliders[11].value);
+        BeeQueen beeQueen = new BeeQueen(_sliders[12].value, _sliders[13].value, (int)_sliders[14].value, _sliders[15].value);
+        hive.TryInitialize(beeQueen, beeWorker, (int)_sliders[16].value);
         _map.PlacePlantInCell(flower);
         _map.PlacePlantInCell(weed);
         _map.PlaceHiveInCell(hive);
