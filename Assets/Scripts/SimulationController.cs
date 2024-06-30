@@ -40,6 +40,11 @@ public class SimulationController : MonoBehaviour
         _texts[2].text = "bee worker : " + _map.GetBeesCount();
         _texts[3].text = "bee queen : " + _map.GetBeeQueenCount();
         _texts[4].text = "hive : " + _map.GetHiveCount();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void StartSimulation()
