@@ -31,10 +31,6 @@ public class Cell : MonoBehaviour
                 _stateObject = null;
             }
         }
-        else 
-        {
-            
-        }
     }
 
     public bool TryAddAdjacentCells(Cell topAdjacentCell, Cell bottomAdjacentCell, Cell leftAdjacentCell, Cell rightAdjacentCell)

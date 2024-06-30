@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class SimulationController : MonoBehaviour
@@ -10,6 +11,7 @@ public class SimulationController : MonoBehaviour
     [SerializeField] private Button _finishButton;
     [SerializeField] private Slider[] _sliders;
     [SerializeField] private Hive _hivePrefub;
+    [SerializeField] private TextMeshProUGUI[] _texts;
     private Map _map;
 
     private void OnEnable()
@@ -29,6 +31,15 @@ public class SimulationController : MonoBehaviour
         _finishButton.interactable = false;
         _map = Map.GetInstance(Vector3.left, 1, 4, 4, 8);
         _map.TryCreate(_cellPrefub, 0.2f);
+    }
+
+    private void Update()
+    {
+        _texts[0].text = "flower : " + _map.GetFlowerCount();
+        _texts[1].text = "weed : " + _map.GetWeedCount();
+        _texts[2].text = "bee worker : " + _map.GetBeesCount();
+        _texts[3].text = "bee queen : " + _map.GetBeeQueenCount();
+        _texts[4].text = "hive : " + _map.GetHiveCount();
     }
 
     private void StartSimulation()

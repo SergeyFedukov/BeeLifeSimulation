@@ -159,4 +159,74 @@ public class Map
             Object.Destroy(cell.gameObject);
         }
     }
+
+    public int GetHiveCount()
+    {
+        int count = 0;
+
+        foreach (var cell in _hiveCells)
+        {
+            Hive hive = (Hive)cell.StateObject;
+            if (hive != null)
+                count++;
+        }
+
+        return count;
+    }
+
+    public int GetBeesCount()
+    {
+        int count = 0;
+
+        foreach (var cell in _hiveCells)
+        {
+            Hive hive = (Hive)cell.StateObject;
+            if (hive != null)
+                count += hive.GetBeesCount;
+        }
+
+        return count;
+    }
+
+    public int GetBeeQueenCount()
+    {
+        int count = 0;
+
+        foreach (var cell in _hiveCells)
+        {
+            Hive hive = (Hive)cell.StateObject;
+            if (hive != null)
+                count += hive.GetBeeQueenCount;
+        }
+
+        return count;
+    }
+
+    public int GetFlowerCount()
+    {
+        int count = 0;
+
+        foreach (var cell in _plantCells)
+        {
+            Plant plant = (Plant)cell.StateObject;
+            if (plant != null && plant is Flower)
+                count++;
+        }
+
+        return count;
+    }
+
+    public int GetWeedCount()
+    {
+        int count = 0;
+
+        foreach (var cell in _plantCells)
+        {
+            Plant plant = (Plant)cell.StateObject;
+            if (plant != null && plant is Weed)
+                count++;
+        }
+
+        return count;
+    }
 }

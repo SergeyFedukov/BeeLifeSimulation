@@ -35,20 +35,20 @@ public abstract class Plant : MonoBehaviour, IStateObject
     {
         Cell[] cells = { topCell, bottomCell, leftCell, rightCell };
 
+        if (_timeUntilDeath <= 0)
+            IsAlive = false;
+
         if (IsAlive)
         {
             TryBreed(cells);
             _timeUntilDeath -= Time.deltaTime;
         }
-
-        if (_timeUntilDeath <= 0)
-            IsAlive = false;
     }
 
     private void TryBreed(Cell[] cells)
     {
         _timeUntilBreeding -= Time.deltaTime;
-        if (_timeUntilBreeding <= 0)
+        if (_timeUntilBreeding <= 0 && IsAlive)
             _canBreed = true;
 
         if (_canBreed)

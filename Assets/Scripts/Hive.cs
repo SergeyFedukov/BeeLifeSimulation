@@ -12,6 +12,10 @@ public class Hive : MonoBehaviour, IStateObject
     private int countOfPollen;
     protected bool _isInitialized = false;
 
+    public int GetBeesCount => _bees.Count;
+
+    public int GetBeeQueenCount => _beeQueen.IsAlive ? 1 : 0;
+
     private void Awake()
     {
         if (_beeCapacity > 0)
